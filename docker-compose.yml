@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  db:
+    platform: linux/x86_64
+    container_name: "hi-projects-db"
+    image: mysql:5.7
+    ports:
+      - "33006:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - .:/hi-projects
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
+    restart: "always"
+
+  app:
+    platform: linux/x86_64
+    container_name: "hi-projects-app"
+    build: .
+    command: bundle exec rails s -p 3000 -b "0.0.0.0"
+    env_file:
+      - .env
+    volumes:
+      - .:/hi-projects
+    ports:
+      - "30000:3000"
+    depends_on:
+      - db
+    stdin_open: true
+    tty: true
+
+volumes:
+  db_data:

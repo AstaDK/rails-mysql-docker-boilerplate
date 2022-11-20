@@ -1,24 +1,22 @@
-# README
+## How to run project 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+1. Run docker build
+```js
+docker-compose build
+```
 
-Things you may want to cover:
+2. Run db setup
+```js
+docker-compose run web rake db:create
+docker-compose run web rake db:migrate
+docker-compose run web rake db:seed
+```
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+3. Run docker
+```js
+docker-compose up 
+```
+or 
+```js
+docker-compose up -d
+```
