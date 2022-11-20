@@ -1,18 +1,22 @@
 ## How to run project 
+1. Copy and change the name env.example to .env
+```js
+cp .env.example .env
+```
 
-1. Run docker build
+2. Run docker build
 ```js
 docker-compose build
 ```
 
-2. Run db setup
+1. Run db setup
 ```js
-docker-compose run web rake db:create
-docker-compose run web rake db:migrate
-docker-compose run web rake db:seed
+docker-compose run app rake db:create
+docker-compose run app rake db:migrate
+docker-compose run app rake db:seed
 ```
 
-3. Run docker
+1. Run docker
 ```js
 docker-compose up 
 ```
@@ -20,3 +24,8 @@ or
 ```js
 docker-compose up -d
 ```
+
+## Project local development
+App: [localhost:3030](http://localhost:3030)
+
+Adminer: [localhost:8080](http://localhost:8080/?server=db&username=root)

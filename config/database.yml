@@ -8,15 +8,15 @@ default: &default
 
 development:
   <<: *default
-  database: rails-docker-app_development
+  database: hi-projects-app-development
 
 test:
   <<: *default
-  database: rails-docker-app_test
+  database: hi-projects-app-test
 
 production:
   <<: *default
-  database: rails-docker-app_production
+  database: hi-projects-app-production
   username: rails-docker-app
   password: <%= ENV["DATABASE_PASSWORD"] %>
 

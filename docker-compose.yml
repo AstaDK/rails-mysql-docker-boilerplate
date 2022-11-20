@@ -6,7 +6,7 @@ services:
     container_name: "hi-projects-db"
     image: mysql:5.7
     ports:
-      - "33006:3306"
+      - "3336:3306"
     volumes:
       - db_data:/var/lib/mysql
       - .:/hi-projects
@@ -25,11 +25,32 @@ services:
     volumes:
       - .:/hi-projects
     ports:
-      - "30000:3000"
+      - "3030:3000"
     depends_on:
       - db
+      - redis
     stdin_open: true
     tty: true
+    environment:
+      - REDIS_URL_CACHING=redis://redis:6379/0
+
+  adminer_container:
+    container_name: "hi-projects-adminer"
+    image: adminer:latest
+    environment:
+      ADMINER_DEFAULT_SERVER: db
+    ports:
+      - 8080:8080
+
+  redis:
+    container_name: "hi-projects-redis"
+    image: 'redis:5-alpine'
+    command: redis-server
+    ports:
+      - '6379:6379'
+    volumes:
+      - 'redis:/data'
 
 volumes:
   db_data:
+  redis:
