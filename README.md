@@ -4,19 +4,8 @@
 cp .env.example .env
 ```
 
-2. Run docker build
-```js
-docker-compose build
-```
 
-1. Run db setup
-```js
-docker-compose run app rake db:create
-docker-compose run app rake db:migrate
-docker-compose run app rake db:seed
-```
-
-1. Run docker
+2. Run docker
 ```js
 docker-compose up 
 ```
@@ -24,6 +13,14 @@ or
 ```js
 docker-compose up -d
 ```
+
+3. Run db setup
+```js
+docker-compose run app rake db:create
+docker-compose run app rake db:migrate
+docker-compose run app rake db:seed
+```
+
 
 ## Project local development
 App: [localhost:3030](http://localhost:3030)
